@@ -31,9 +31,9 @@ This repository contains the orchestration files for the full-stack application.
 
 ```bash
 # Clone all three repositories
-git clone <parent-repo-url> .
-git clone <backend-repo-url> ist_backend_assessment
-git clone <frontend-repo-url> ist_frontend
+git clone https://github.com/Karera-o/IST-Africa-assessment-documentation.git .
+git clone https://github.com/Karera-o/IST-Africa-Assessment.git
+git clone  https://github.com/Karera-o/IST-Africa-Assessment-Frontend.git
 
 # Build and start all services
 docker-compose up --build
