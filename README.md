@@ -151,6 +151,8 @@ NEXT_PUBLIC_API_URL=http://localhost:8000/api
 - Email: `admin@gmail.com`
 - Password: `IST@Africa`
 
+Note: by default every user who registers in, is given a role of staff. To change that login as admin and change role of the user.
+
 ## API Documentation
 
 ### OpenAPI/Swagger
