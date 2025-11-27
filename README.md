@@ -31,9 +31,10 @@ This repository contains the orchestration files for the full-stack application.
 
 ```bash
 # Clone all three repositories
-git clone https://github.com/Karera-o/IST-Africa-assessment-documentation.git .
+git clone https://github.com/Karera-o/IST-Africa-assessment-documentation.git
+cd IST-Africa-assessment-documentation
 git clone https://github.com/Karera-o/IST-Africa-Assessment.git
-git clone  https://github.com/Karera-o/IST-Africa-Assessment-Frontend.git
+git clone https://github.com/Karera-o/IST-Africa-Assessment-Frontend.git
 
 # Build and start all services
 docker-compose up --build
@@ -89,18 +90,19 @@ JWT_PUBLIC_KEY=-----BEGIN PUBLIC KEY-----
 # Postmark Email Service
 POSTMARK_SERVER_TOKEN=your-postmark-server-token
 POSTMARK_FROM_EMAIL=noreply@yourdomain.com
-POSTMARK_FROM_NAME=ProcureFlow
+POSTMARK_FROM_NAME=IST Africa ProcureFlow
 
 # OpenAI/OpenRouter (for document extraction)
 OPENROUTER_API_KEY=your-openrouter-api-key
 # Default model: z-ai/glm-4.6
 
 # Cloudflare R2 (for file storage)
-CLOUDFLARE_R2_ACCOUNT_ID=your-account-id
-CLOUDFLARE_R2_ACCESS_KEY_ID=your-access-key
-CLOUDFLARE_R2_SECRET_ACCESS_KEY=your-secret-key
-CLOUDFLARE_R2_BUCKET=your-bucket-name
-R2_PUBLIC_BASE_URL=https://your-domain.com
+USE_R2_STORAGE=False 
+R2_ENDPOINT_URL=https://cloudflare-endpoint.com
+R2_ACCESS_KEY_ID=your-access-key
+R2_SECRET_ACCESS_KEY=your-secret-key
+R2_BUCKET_NAME=ist-africa
+R2_PUBLIC_URL=https://your-domain.com
 
 # Redis
 REDIS_URL=redis://redis:6379/0
@@ -148,7 +150,7 @@ NEXT_PUBLIC_API_URL=http://localhost:8000/api
 
 **Default Admin Credentials:**
 
-- Email: `admin@gmail.com`
+- Email: `admin@istafrica.com`
 - Password: `IST@Africa`
 
 Note: by default every user who registers in, is given a role of staff. To change that login as admin and change role of the user.
@@ -191,7 +193,7 @@ Authorization: Bearer <access_token>
 - **Database**: PostgreSQL 17
 - **Cache/Queue**: Redis 7
 - **Task Queue**: Celery
-- **WSGI Server**: Gunicorn (6 workers)
+- **WSGI Server**: Gunicorn (3 workers)
 - **Authentication**: JWT (RS256)
 - **File Storage**: Cloudflare R2 (with local fallback)
 - **Email**: Postmark
@@ -305,3 +307,15 @@ IST Africa Technical Assessment
 ## Contact
 
 For issues or questions, please contact olivierkarera2020@gmail.com .
+
+USE_R2_STORAGE=False
+
+R2_ENDPOINT_URL=https://cloudflare-endpoint.com
+
+R2_ACCESS_KEY_ID=your-access-key
+
+R2_SECRET_ACCESS_KEY=your-secret-key
+
+R2_BUCKET_NAME=ist-africa
+
+R2_PUBLIC_URL=https://your-domain.com

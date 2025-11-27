@@ -1,9 +1,9 @@
 services:
   db:
     image: postgres:17-alpine
-    container_name: ist_backend_db
+    container_name: backend_db_ist_africa
     env_file:
-      - ist_backend_assessment/.env-dev
+      - .env.example
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
@@ -19,7 +19,7 @@ services:
 
   redis:
     image: redis:7-alpine
-    container_name: ist_backend_redis
+    container_name: backend_redis_ist_africa
     ports:
       - 6379
     volumes:
@@ -35,17 +35,17 @@ services:
 
   backend:
     build:
-      context: ./ist_backend_assessment
+      context: ./IST-Africa-Assessment
       dockerfile: Dockerfile
-    container_name: ist_backend_web
-    command: sh -c "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn --bind 0.0.0.0:8000 --workers 4 --timeout 120 --access-logfile - --error-logfile - config.wsgi:application"
+    container_name: web_backend_ist_africa
+    command: sh -c "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn --bind 0.0.0.0:8000 --workers 3 --timeout 120 --access-logfile - --error-logfile - config.wsgi:application"
     volumes:
       - static_volume:/app/staticfiles
       - logs_volume:/app/logs
     ports:
       - "8000:8000"
     env_file:
-      - .env
+      - .env.example
     depends_on:
       db:
         condition: service_healthy
@@ -63,14 +63,14 @@ services:
 
   celery:
     build:
-      context: ./ist_backend_assessment
+      context: ./IST-Africa-Assessment
       dockerfile: Dockerfile
-    container_name: ist_backend_celery
+    container_name: celery_backend_ist_africa
     command: celery -A config worker --loglevel=info
     volumes:
       - logs_volume:/app/logs
     env_file:
-      - .env
+      - .env.example
     depends_on:
       db:
         condition: service_healthy
@@ -84,9 +84,9 @@ services:
 
   frontend:
     build:
-      context: ./ist_frontend
+      context: ./IST-Africa-Assessment-Frontend
       dockerfile: Dockerfile
-    container_name: ist_frontend
+    container_name: frontend_ist_africa
     ports:
       - "3000:3000"
     environment:
